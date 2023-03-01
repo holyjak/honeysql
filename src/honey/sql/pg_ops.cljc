@@ -29,7 +29,13 @@
 
 (def ->
   "The -> operator for accessing nested JSON(B) values as JSON(B).
-  Ex.: `[-> :author \"spouse\" \"name\"]`"
+  Ex.: 
+  ```clojure
+  (sql/format {:select [[[:->> [:-> :my_column \"kids\" [:inline 0]] "name"]]]})
+  ; => [\"SELECT (my_column -> ? -> 0) ->> ?\" \"kids\" \"name\"]
+  ```
+  
+  Notice we need to wrap the keys/indices with :inline if we don't want them to become parameters."
   :->)
 (def ->>    "The ->> operator - like -> but returns the value as text instead of a JSON object." :->>)
 (def hash>  "The #> operator extracts JSON sub-object at the specified path."  :#>)
