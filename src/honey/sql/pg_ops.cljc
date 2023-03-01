@@ -31,7 +31,7 @@
   "The -> operator for accessing nested JSON(B) values as JSON(B).
   Ex.: 
   ```clojure
-  (sql/format {:select [[[:->> [:-> :my_column \"kids\" [:inline 0]] "name"]]]})
+  (sql/format {:select [[[:->> [:-> :my_column \"kids\" [:inline 0]] \"name\"]]]})
   ; => [\"SELECT (my_column -> ? -> 0) ->> ?\" \"kids\" \"name\"]
   ```
   
